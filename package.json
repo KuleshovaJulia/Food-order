@@ -1,0 +1,29 @@
+{
+  "name": "pizza",
+  "version": "1.0.0",
+  "description": "MEAN stack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KuleshovaJulia/Food-order.git"
+  },
+  "keywords": [
+    "MEAN",
+    "stack",
+    "application"
+  ],
+  "author": "Julia Kuleshova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KuleshovaJulia/Food-order/issues"
+  },
+  "homepage": "https://github.com/KuleshovaJulia/Food-order#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.1"
+  }
+}
