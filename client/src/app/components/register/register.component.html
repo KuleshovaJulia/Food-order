@@ -1,0 +1,92 @@
+<h1 class="page-header">Регистрация</h1>
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+
+
+ <form [formGroup]="form" (submit)="onRegisterSubmit()">
+
+  <div class="form-group">
+    <label for="name">Имя</label>
+    <div [ngClass]="{'has-error': (form.controls.name.errors && form.controls.name.dirty)  , 'has-success': !form.controls.name.errors}">
+      <input type="text" name="name" class="form-control" autocomplete="off" placeholder="Имя" formControlName="name"/>
+      <ul class="help-block">
+      	<li *ngIf="form.controls.name.errors?.required && form.controls.name.dirty"> Поле обязательно к заполнению </li>
+      	<li *ngIf="(form.controls.name.errors?.minlength || form.controls.name.errors?.maxlength && form.controls.name.dirty) && form.controls.name.dirty">Имя должно содержать от 3 до 15 символов </li>
+      	 <li *ngIf="form.controls.name.errors?.validateName && form.controls.name.dirty"> Имя пользователя, не должно иметь никаких специальных символов или пробелов</li>
+      </ul>
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label for="surname">Фамилия</label>
+    <div [ngClass]="{'has-error': (form.controls.surname.errors && form.controls.surname.dirty)  , 'has-success': !form.controls.surname.errors}">
+      <input type="text" name="surname" class="form-control" autocomplete="off" placeholder="Фамилия" formControlName="surname" />
+      <ul class="help-block">
+      	<li *ngIf="form.controls.surname.errors?.required && form.controls.surname.dirty"> Поле обязательно к заполнению </li>
+      	<li *ngIf="(form.controls.surname.errors?.minlength || form.controls.surname.errors?.maxlength  && form.controls.surname.dirty) && form.controls.surname.dirty">Фамилия должна содержать от 2 до 20 символов</li>
+      	 <li *ngIf="form.controls.surname.errors?.validateSurname && form.controls.surname.dirty"> Фамилия пользователя, не должна иметь никаких специальных символов или пробелов</li>
+      </ul>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label for="email">E-mail</label>
+    <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty)  , 'has-success': !form.controls.email.errors}">
+      <input type="text" name="email" class="form-control" autocomplete="off" placeholder="E-mail" formControlName="email"/>
+      <ul class="help-block">
+      	<li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty"> Поле обязательно к заполнению </li>
+      	<li *ngIf="(form.controls.email.errors?.minlength || form.controls.email.errors?.maxlength  && form.controls.email.dirty) && form.controls.email.dirty">E-mail должен содержать от 5 до 30 символов </li>
+      	 <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty"> Не правильный E-mail</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Пароль</label>
+    <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty)  , 'has-success': !form.controls.password.errors}">
+      <input type="password" name="email" class="form-control" autocomplete="off" placeholder="Пароль" formControlName="password"/>
+      <ul class="help-block">
+      	<li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty"> Поле обязательно к заполнению </li>
+      	<li *ngIf="(form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength  && form.controls.password.dirty) && form.controls.password.dirty">Пароль должен содержать от 8 до 35 символов</li>
+      	 <li *ngIf="form.controls.password.errors?.validatePassword && form.controls.password.dirty"> В пароле должны быть цифры, символы верхнего и нижнего регистра</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="confirm">Повторите пароль</label>
+    <div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors  && !form.errors?.matchingPasswords}">
+      <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="Повторите пароль" formControlName="confirm"/>
+      <ul class="help-block">
+      	<li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty"> Поле обязательно к заполнению </li>
+      	<li *ngIf="(form.controls.confirm.errors?.minlength || form.controls.confirm.errors?.maxlength  && form.controls.confirm.dirty) && form.controls.confirm.dirty">Пароль должен содержать от 8 до 35 символов </li>
+      	<li *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty">Пароли не одинаковые</li>
+      </ul>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label for="number">Номер телефона</label>
+    <div [ngClass]="{'has-error': (form.controls.number.errors && form.controls.number.dirty)  , 'has-success': !form.controls.number.errors}">
+      <input type="text" name="number" class="form-control" autocomplete="off" placeholder="Номер телефона" formControlName="number"/>
+      <ul class="help-block">
+      	<li *ngIf="form.controls.number.errors?.required && form.controls.number.dirty"> Поле обязательно к заполнению </li>
+      	<li *ngIf="(form.controls.number.errors?.minlength || form.controls.number.errors?.maxlength && form.controls.number.dirty) && form.controls.number.dirty">Номер должен содержать 14 символов</li>
+      	 <li *ngIf="form.controls.number.errors?.validateNumber && form.controls.number.dirty"> Формат: (0XX) XXX-XX-XX</li>
+      </ul>
+    </div>
+  </div>
+   <input [disabled]="!form.valid || processing" type="submit" class="btn btn-primary" value="Зарегистрироваться" />
+   </form>
+
+   <!--<p>Name: {{ form.controls.name.value }} </p>
+   <p>Surname: {{ form.controls.surname.value }} </p>
+   <p>E-mail: {{ form.controls.email.value }} </p>
+   <p>Password: {{ form.controls.password.value }} </p>
+   <p>Confirm: {{ form.controls.confirm.value }} </p>
+   <p>Number: {{ form.controls.number.value }} </p> -->
