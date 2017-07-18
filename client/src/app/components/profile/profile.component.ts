@@ -13,6 +13,7 @@ name;
 surname;
 email;
 number;
+permission;
 
   constructor(
   	private authService: AuthService
@@ -24,6 +25,7 @@ number;
     this.surname = profile.user.surname; 
     this.email = profile.user.email; 
     this.number = profile.user.number; 
+    this.permission = profile.user.permission; 
 
     });
   }

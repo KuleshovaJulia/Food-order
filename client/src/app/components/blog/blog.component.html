@@ -1,0 +1,99 @@
+<h1 class="page-header">Пицца</h1>
+
+<div class="row show-hide-message" *ngIf="message && newPost">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+<div *ngIf="permission === 'admin'">
+<!-- New Post Button -->
+<button type="button" name="button" class="btn btn-warning" *ngIf="!newPost" (click)="newBlogForm()">Добавить</button>
+
+<!-- Reload Button -->
+<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Обновить</button>
+</div>
+<br />
+<br />
+
+<!-- New Blog Form -->
+<form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()" *ngIf="newPost">
+  <!-- Title Input -->
+  <div class="form-group">
+    <label for="title">Название</label>
+    <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+      <!-- Title Input -->
+      <input type="text" name="title" class="form-control" placeholder="Название" autocomplete="off" formControlName="title" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+        <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">Max length: 50, Min length: 5</li>
+        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or number</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Body Input -->
+  <div class="form-group">
+    <label for="body">Описание</label>
+    <div [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
+      <!-- Body Input -->
+      <textarea name="body" rows="8" cols="80" placeholder="Описание" class="form-control" formControlName="body"></textarea>
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
+        <li *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">Max length: 500, Min length: 5</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Название</label>
+    <div [ngClass]="{'has-success': form.controls.price.valid, 'has-error': form.controls.price.dirty && form.controls.price.errors}">
+      <!-- Title Input -->
+      <input type="text" name="price" class="form-control" placeholder="Название" autocomplete="off" formControlName="price" />
+      <!-- Validation -->
+
+    </div>
+  </div>
+
+  <!-- Go Back Button -->
+  <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Назад</button>
+  <!-- Submit Button -->
+  <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Готово</button>
+
+</form>
+<!-- New Blog Form -->
+
+<!-- Panel Start -->
+<div *ngIf="!newPost">
+  <!-- Panel Outer Layer -->
+  <div class="panel panel-primary" *ngFor="let blog of blogPosts">
+
+    <!-- Panel Title -->
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ blog.title }}</h3>
+    </div>
+
+    <!-- Panel Body -->
+    <div class="panel-body">
+      {{ blog.body }}
+    </div>
+
+    <!-- Panel Footer Start -->
+    <div class="panel-footer">
+     <strong>Цена: </strong>{{ blog.price }} <br />
+      <strong>Отправил: </strong>{{ blog.createdBy }}
+      <br />
+      <strong>Дата: </strong>{{ blog.createdAt | date:'dd MMM, yyyy' }}
+      <br />
+      <div *ngIf="name === blog.createdBy" >        
+      </div>
+
+      <!-- Edit Button -->
+      <a [routerLink]="['/edit-blog/', blog._id]" *ngIf="name === blog.createdBy"><button type="button" name="button" class="btn btn-sm btn-info">Изменить</button></a>
+    </div>    
+  </div>
+  <!-- Panel Outer Layer 
+    -->
+</div>
+<!-- Panel End -->

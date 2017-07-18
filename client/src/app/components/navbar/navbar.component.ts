@@ -10,6 +10,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class NavbarComponent implements OnInit {
 
+permission;
+
   constructor(
   private authService: AuthService,
   private router: Router,
@@ -25,6 +27,11 @@ onLogoutClick(){
 
 
   ngOnInit() {
+  this.authService.getProfile().subscribe(profile => {
+  
+  this.permission = profile.user.permission; 
+
+    });
   }
 
 }

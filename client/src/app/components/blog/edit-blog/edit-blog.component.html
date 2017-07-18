@@ -1,0 +1,32 @@
+<h1 class="page-header">Изменить</h1>
+
+<!-- Custom Success/Erro Message -->
+<div class="row show-hide-message" *ngIf="message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+
+<form (submit)="updateBlogSubmit()" *ngIf="!loading" >
+
+  <div class="form-group">
+    <label for="title">Название</label>
+    <input [disabled]="processing" type="text" name="title" placeholder="Название" class="form-control" [(ngModel)]="blog.title"/>
+  </div>
+
+
+  <div class="form-group">
+    <label for="body">Описание</label>
+    <textarea [disabled]="processing" name="body" rows="8" cols="80" [(ngModel)]="blog.body" class="form-control" placeholder="Описание"></textarea>
+  </div>
+
+<div class="form-group">
+    <label for="price">Цена</label>
+    <input [disabled]="processing" type="text" name="price" placeholder="Цена" class="form-control" [(ngModel)]="blog.price"/>
+  </div>
+
+  <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="goBack()">Назад</button>
+  <button [disabled]="processing" type="submit" name="save" class="btn btn-info">Сохранить</button>
+
+</form>

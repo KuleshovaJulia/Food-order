@@ -7,6 +7,7 @@ const path = require('path');
 const authentication = require('./routes/authentication')(router);
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const blogs = require('./routes/blogs')(router);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err) => {
@@ -29,8 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/authentication', authentication);
+app.use('/blogs/', blogs);
 
-// respond with "hello world" when a GET request is made to the homepage
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname +'/client/dist/index.html'));
 });

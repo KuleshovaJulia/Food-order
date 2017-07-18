@@ -166,7 +166,8 @@ name: { type: String, required: true, lowercase: true, validate: nameValidators}
 surname: { type: String, required: true, lowercase: true, validate: surnameValidators},
 email: { type: String, required: true, unique:true, lowercase: true, validate: emailValidators},
 number: { type: String, required: true, validate: numberValidators},
-password: { type: String, required: true, validate: passwordValidators }
+password: { type: String, required: true, validate: passwordValidators },
+permission: {type: String, required: true, default: 'user' }
 });
 
 

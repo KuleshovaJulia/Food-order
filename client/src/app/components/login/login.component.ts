@@ -71,7 +71,7 @@ disableForm() {
         if (this.previousUrl) {
             this.router.navigate([this.previousUrl]); 
           } else {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/blog']);
             }
 
         }, 2000);

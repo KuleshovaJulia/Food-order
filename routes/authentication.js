@@ -31,7 +31,8 @@ module.exports = (router) => {
 					surname: req.body.surname.toLowerCase(),
 					email: req.body.email.toLowerCase(),
 					number: req.body.number,
-					password: req.body.password
+					password: req.body.password,
+					permission: req.body.permission
 
 				});
 					user.save((err) => {
@@ -128,7 +129,7 @@ module.exports = (router) => {
 
 
  router.get('/profile', (req, res) => {
- 	 User.findOne({ _id: req.decoded.userId }).select('name surname email number').exec((err, user) => {
+ 	 User.findOne({ _id: req.decoded.userId }).select('name surname email number permission').exec((err, user) => {
  	 	if (err) {
           res.json({ success: false, message: err }); 
         } else {
